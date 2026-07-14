@@ -1,0 +1,79 @@
+
+% ========================= START ============================
+% Glossary Section Formatting, only move/modify cautiously.
+% ============================================================
+\renewcommand{\glossarysection}[2][]{%
+    \begin{center}%
+        {\Large\bfseries #2}%
+    \end{center}%
+    \glossarypreamble%
+}
+
+\newglossarystyle{acronymstyle}{%
+    \setglossarystyle{long}%
+    \renewcommand{\glossarypreamble}{\vspace{1em}}%
+    \renewcommand*{\glsgroupskip}{}%
+    \renewenvironment{theglossary}{%
+        \setlength{\LTleft}{0pt}%
+        \setlength{\LTright}{\fill}%
+        \begin{longtable}{@{}l@{\hspace{6pt}}c@{\hspace{6pt}}l@{}}%
+    }{%
+        \end{longtable}%
+    }%
+    \renewcommand*{\glossentry}[2]{%
+        \glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}}%
+        & : & \glossentrydesc{##1}\glspostdescription\space ##2
+        \tabularnewline[8pt]%
+    }%
+}
+\setglossarystyle{acronymstyle}
+
+
+% ============================================================
+% Glossary Section Formatting, the following are glossary contents.
+% =========================== END ============================
+
+%===================== Glossary Entries ===================%
+% Acronyms for the thesis
+% Format: \newacronym{label}{acronym}{full name}
+
+% TODO: Add your acronyms here
+\newacronym[sort=DTN]{dtn}{DTN}{\textit{Delay Tolerant Network}}
+\newacronym[sort=MSD]{msd}{MSD}{\textit{Mean Squared Displacement}}
+\newacronym[sort=RWP]{rwp}{RWP}{\textit{Random Waypoint}}
+\newacronym[sort=BM]{bm}{BM}{\textit{Brownian Motion}}
+\newacronym[sort=LF]{lf}{LF}{\textit{Lévy Flight}}
+\newacronym[sort=LW]{lw}{LW}{\textit{Lévy Walk}}
+\newacronym[sort=HPP]{hpp}{HPP}{\textit{Homogeneous Poisson Process}}
+\newacronym[sort=TCP]{tcp}{TCP}{\textit{Thomas Clustering Process}}
+\newacronym[sort=BP]{bp}{BP}{\textit{Behavioral Policy}}
+\newacronym[sort=PSRL]{psrl}{PSRL}{\textit{Posterior Sampling for Reinforcement Learning}}
+\newacronym[sort=RL]{rl}{RL}{\textit{Reinforcement Learning}}
+\newacronym[sort=DP]{dp}{DP}{\textit{Dynamic Programming}}
+\newacronym[sort=MC]{mc}{MC}{\textit{Monte Carlo}}
+\newacronym[sort=TD]{td}{TD}{\textit{Temporal Difference}}
+\newacronym[sort=Q-Learning]{ql}{QL}{\textit{Q-Learning}}
+\newacronym[sort=MDP]{mdp}{MDP}{\textit{Markov Decision Process}}
+\newacronym[sort=EG]{eg}{EG}{\textit{Epsilon-Greedy}}
+\newacronym[sort=UCB]{ucb}{UCB}{\textit{Upper Confidence Bound}}
+\newacronym[sort=UCB1]{ucb1}{UCB1}{\textit{Upper Confidence Bound 1}}
+\newacronym[sort=PS]{ps}{PS}{\textit{Posterior Sampling}}
+\newacronym[sort=PSQL]{psql}{PSQL}{\textit{Posterior Sampling Q-Learning}}
+\newacronym[sort=TS]{ts}{TS}{\textit{Thompson Sampling}}
+\newacronym[sort=GTS]{gts}{GTS}{\textit{Gaussian Thompson Sampling}}
+\newacronym[sort=BBTS]{bbts}{BBTS}{\textit{Beta-Binomial Thompson Sampling}}
+\newacronym[sort=CER]{cer}{CER}{\textit{Current Episodic Reward}}
+\newacronym[sort=CCR]{ccr}{CCR}{\textit{Current Cumulative Reward}}
+\newacronym[sort=SSR]{ssr}{SSR}{\textit{Search Success Rate}}
+\newacronym[sort=Y]{y}{Y}{\textit{Yield}}
+\newacronym[sort=TC]{tc}{TC}{\textit{Target Coverage}}
+\newacronym[sort=PMF]{pmf}{PMF}{\textit{Probability Mass Function}}
+\newacronym[sort=CI]{ci}{CI}{\textit{Confidence Interval}}
+\newacronym[sort=RME]{rme}{RME}{\textit{Relative Margin of Error}}
+\newacronym[sort=CV]{cv}{CV}{\textit{Coefficient of Variation}}
+
+%% Commented out: Main glossary (DAFTAR ISTILAH) - use if needed later
+%% \newglossaryentry{label}{
+%%   name={Term},
+%%   description={Description of the term}
+%% }

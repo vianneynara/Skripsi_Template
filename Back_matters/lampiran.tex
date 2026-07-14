@@ -1,0 +1,123 @@
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}} % Disable section numbering in ToC for appendices
+
+\chapter{LAMPIRAN}\label{ch:appendix}
+\vspace*{20pt}
+
+% ========================= START ============================
+% Appendix Section Formatting, only move/modify cautiously.
+% ============================================================
+% Custom counter for appendix sections
+\newcounter{appendixsection}
+\setcounter{appendixsection}{0}
+
+% Redefine \thesection to use our custom counter
+\renewcommand{\thesection}{\arabic{appendixsection}}
+
+% Modify \section to increment counter and set label properly
+\makeatletter
+\let\oldsection\section
+\renewcommand{\section}{%
+  \@ifnextchar[%]
+    {\appendix@section@opt}
+    {\appendix@section@noopt}%
+}
+
+\def\appendix@section@opt[#1]#2{%
+  \refstepcounter{appendixsection}%
+  \oldsection[#1]{#2}%
+}
+
+\def\appendix@section@noopt#1{%
+  \refstepcounter{appendixsection}%
+  \oldsection{#1}%
+}
+\makeatother
+
+% Custom formatting for section titles
+\titleformat{\section}[block]{\bfseries\normalsize}{}{0pt}{Lampiran \thesection: }
+\titlespacing*{\section}{0pt}{0.5em}{0.5em}
+
+% Ensure each section (except the first) starts on a new page
+\newcounter{sectioncount}
+\setcounter{sectioncount}{0}
+
+\let\oldsectiontwo\section
+\renewcommand{\section}[1]{%
+  \ifnum\thesectioncount>0
+    \clearpage
+  \fi
+  \stepcounter{sectioncount}%
+  \oldsectiontwo{#1}%
+}
+
+% Disable paragraph indentation in appendix
+\setlength{\parindent}{0pt}
+
+% ============================================================
+% Appendix Section Formatting, the following are appendix contents.
+% =========================== END ============================
+
+\section{Example And Rules in Appendix}\label{apx:example_and_rules}
+\mylampiran{\textit{Example and rules in Appendix}}
+
+\begin{comment}
+You can use this type of comment to provide additional information or instructions for the appendix.
+Will not be displayed in the final document.
+\end{comment}
+
+\begin{longtable}{|>{\arraybackslash}p{1cm}|>{\centering\arraybackslash}p{2.5cm}|>{\centering\arraybackslash}p{2.5cm}|}
+
+    % Title Header
+    \hline
+    \multicolumn{3}{|c|}{\textbf{A sample table}} \\
+    \hline
+
+    % Subgroup 1
+    \textbf{No} & \multicolumn{2}{|l|}{\textbf{Sub-group 1}} \\
+    \hline
+    & $Column_{1}$ & $Column_{2}$\\
+    \hline
+    \endfirsthead
+
+    % Header repeated on continuation pages
+    % \hline
+    % \multicolumn{5}{|r|}{\textit{Continue\ldots}} \\
+    \hline
+    & $Column_{1}$ & $Column_{2}$\\
+    \hline
+    \endhead
+
+    \hline
+    \endfoot
+
+    \csvreader[
+        no head,
+        late after line=\\\hline
+    ]{Back_matters/attachments/apx-sample-1.csv}{}
+    {\csvcoli & \csvcoliii}
+
+    % Subgroup 2
+    \textbf{Lingkungan:} & \multicolumn{2}{|l|}{\textbf{Sub-group 2}} \\
+    \hline
+    \csvreader[
+        no head,
+        late after line=\\\hline
+    ]{Back_matters/attachments/apx-sample-2.csv}{}
+    {\csvcoli & \csvcoliii}
+
+\end{longtable}
+
+Pelatihan dilakukan dari episode 1 hingga episode 750 dengan pencatatan kesimpulan metrik pada setiap akhir episode.
+Terdapat banyak metrik yang dicatat, namun tabel performa ini hanya menyajikan fokus metrik utama yang dibahas.
+Di mana Group adalah konfigurasi model terbaik dalam kelompoknya.
+Lalu $CCR_{e=E}$ yang merupakan \acrlong{ccr} (\acrshort{ccr}) pada episode terakhir (episode ke-750).
+Kemudian, $CCR_{avg}$ yaitu rata-rata \acrshort{ccr} selama 750 episode.
+Ada juga $CCR_{max}$ yaitu nilai maksimum \acrshort{ccr} yang dicapai selama 750 episode.
+Terakhir, $Y_{cum}$ adalah jumlah kumulatif \acrlong{y} (\acrshort{y}) yang dicapai selama 750 episode.
+Tabel ini dikelompokkan lagi berdasarkan konfigurasi lingkungan dan jenis seed yang digunakan selama pelatihan awal.
+
+
+\section{Source Code and Data}\label{apx:source_code_and_data}
+Use this appendix to provide source code listings, data files, or any other supplementary material that is relevant to your document. 
+You can include code snippets, scripts, or even entire files if necessary. 
+Make sure to format the code properly for readability.
